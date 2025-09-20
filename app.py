@@ -14,10 +14,10 @@ app = Flask(__name__)
 load_dotenv()
 
 PINECONE_API_KEY=os.getenv("PINECONE_API_KEY")
-OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
+GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
 
 os.environ["PINECONE_API_KEY"]=PINECONE_API_KEY
-os.environ["OPENAI_API_KEY"]=OPENAI_API_KEY
+os.environ["GEMINI_API_KEY"]=GEMINI_API_KEY
 
 index_name="medic-bot"
 embeddings=download_embeddings()
@@ -31,7 +31,7 @@ retriever=docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3}
 
 chat_model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    api_key="AIzaSyBOQE4BVCmkh8_jCztmFzpJuHtEEI7zj2A",
+    api_key=GEMINI_API_KEY,
     convert_system_message_to_human=True
 )
 
